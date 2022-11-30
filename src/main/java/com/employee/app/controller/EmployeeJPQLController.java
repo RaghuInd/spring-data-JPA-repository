@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +23,10 @@ public class EmployeeJPQLController {
 	@Autowired
 	private EmployeeRepository empRepo;
 	
+	@PostMapping("employee")
+	public Employee addEmployee(@RequestBody Employee employee){
+		return this.empRepo.save(employee);
+	}
 	@GetMapping("employees")
 	public List<Employee> getAllEmployees(){
 		return this.empRepo.findAllEmployee();
@@ -43,4 +49,10 @@ public class EmployeeJPQLController {
 		 
 		 return this.empRepo.findBySalaryBetween(from,toSal);
 	}
+	@GetMapping("employee/name/{name}")
+	public List<Employee> getAllEmployeesByName(@PathVariable("name") String empName){
+		//return this.empRepo.findByNameLike(empName);
+		return this.empRepo.findByNameContaining(empName);
+	}
+	
 }

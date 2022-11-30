@@ -24,5 +24,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 	
 	// Query methods
 	List<Employee> findBySalaryBetween(Double slaryFrom,Double salaryTo);
-	
+
+	List<Employee> findByNameLike(String empName);//1. name starts with parameter 2.name ends with parameter 3.parameter is a substring
+	List<Employee> findByNameContaining(String empName);
 }

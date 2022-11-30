@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="employees")
 public class Employee {
-	@Id
+	
 	private Integer id;
 	private String name;
 	private Double salary;
