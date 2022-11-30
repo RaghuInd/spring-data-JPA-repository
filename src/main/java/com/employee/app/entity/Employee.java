@@ -1,16 +1,24 @@
 package com.employee.app.entity;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="employees")
 public class Employee {
-	
+	@Id
+	@GeneratedValue
 	private Integer id;
 	private String name;
 	private Double salary;
+	// employee has depencdency on Address
+	@OneToOne
+	private Address address;
+	
 	public Employee() {
 		super();
 	}
@@ -37,6 +45,12 @@ public class Employee {
 	}
 	public void setSalary(Double salary) {
 		this.salary = salary;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	

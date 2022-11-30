@@ -17,7 +17,7 @@ import com.employee.app.entity.Employee;
 import jakarta.transaction.Transactional;
 
 @RestController
-@RequestMapping("jpql")
+@RequestMapping("v2")// used to do versioning of API
 public class EmployeeJPQLController {
 
 	@Autowired
