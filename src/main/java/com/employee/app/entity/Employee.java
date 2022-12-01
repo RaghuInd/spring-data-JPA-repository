@@ -16,6 +16,7 @@ public class Employee {
 	private String name;
 	private Double salary;
 	// employee has depencdency on Address
+	
 	@OneToOne
 	private Address address;
 	

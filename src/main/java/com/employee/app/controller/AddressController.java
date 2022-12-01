@@ -3,6 +3,7 @@ package com.employee.app.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,17 +25,25 @@ public class AddressController {
 
 	@PostMapping("address/{empId}")
 	public Address addAddressToEmployeeById(@RequestBody Address address, @PathVariable Integer empId) {
-		
+
 		Address newAddress = this.addressRepo.save(address);
-		
+
 		Optional<Employee> foundEmployeeOpt = this.employeeRepo.findById(empId);
-		
-		if (foundEmployeeOpt.isPresent()) {
-			Employee emp = foundEmployeeOpt.get();
-			emp.setAddress(newAddress);
-			this.employeeRepo.save(emp);
+
+		if (foundEmployeeOpt.isEmpty()) {
+			// exception handling
 		}
+
+		Employee emp = foundEmployeeOpt.get();
+		emp.setAddress(newAddress);
+		newAddress.setEmployee(emp);
+		this.employeeRepo.save(emp);
+		this.addressRepo.save(newAddress);
 		return newAddress;
 	}
-	
+	@GetMapping("employee/address/{id}")
+	public Employee getEmployeeByAddressId(@PathVariable Integer id) {
+		return this.addressRepo.findById(id).get().getEmployee();
+	}
+
 }
