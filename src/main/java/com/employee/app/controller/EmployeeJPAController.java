@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.employee.app.entity.Employee;
 import com.employee.app.service.EmployeeService;
 
-@RestController
-@RequestMapping("jpa")
+//@RestController
+//@RequestMapping("jpa")
 public class EmployeeJPAController {
 
 	@Autowired

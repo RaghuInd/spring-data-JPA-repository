@@ -14,7 +14,7 @@ public class Department {
 	String name;
 	String location;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "department")
 	List<Employee> employees=new ArrayList<>();
 
 	public Department() {

@@ -12,7 +12,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
-@RestController
+//@RestController
 public class EmployeeController {
 
 	@PersistenceContext

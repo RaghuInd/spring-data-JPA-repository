@@ -1,9 +1,12 @@
 package com.employee.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -20,6 +23,10 @@ public class Employee {
 	@OneToOne
 	private Address address;
 	
+	@ManyToOne
+	@JsonIgnore
+	private Department department;
+	
 	public Employee() {
 		super();
 	}
@@ -28,6 +35,23 @@ public class Employee {
 		this.id = id;
 		this.name = name;
 		this.salary = salary;
+	}
+	
+	
+	public Employee(Integer id, String name, Double salary, Address address, Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+		this.address = address;
+		this.department = department;
+	}
+	
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	public Integer getId() {
 		return id;

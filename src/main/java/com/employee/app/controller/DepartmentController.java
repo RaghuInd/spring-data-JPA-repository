@@ -30,7 +30,7 @@ public class DepartmentController {
 	public Department getDepartmentById(@PathVariable Integer id) {
 	return this.departmentRepo.findById(id).get();	
 	}
-	
+	// add employee to dept
 	@PostMapping("department/employee/{depId}/{empId}")
 	public Department addEmployeeToDepartment(@PathVariable("depId") Integer depId,@PathVariable("empId") Integer id) {
 		
